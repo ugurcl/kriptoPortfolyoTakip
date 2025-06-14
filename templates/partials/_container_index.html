@@ -1,0 +1,26 @@
+{% load humanize %}
+{% load custom_tags %}
+
+<div class="container">
+  <section>
+    <h2 class="section-title">Güncel Piyasa Verileri</h2>
+    <div class="grid grid-3">
+    
+    {% for item in coins  %}
+      <div class="card" id="{{item.symbol}}">
+        <div class="detail">
+            
+            <h3>{{item.symbol}}</h3>
+
+        </div>
+        <span class="price">
+
+          {% with item.lastPrice|floatformat:2 as formatted %}
+          {{ formatted|intcomma }} $
+          {% endwith %}   </span>
+      </div>
+    {% endfor %}
+     
+    </div>
+  </section>
+</div>

@@ -1,0 +1,116 @@
+
+{% extends "base.html" %}
+
+{% block sidebar %}
+
+{% include "partials/_sidebar.html" %}
+
+{% endblock sidebar %}
+{% block navbar %}
+ {% include "partials/_navbar.html" %} 
+ 
+{% endblock navbar %}
+
+
+
+{% block stats %}
+
+{% include "partials/_stats.html" %}
+
+{% endblock stats %} 
+
+
+{% block content %}
+
+<div class="portfolio-class"> 
+
+
+    <form method="post">
+        {% csrf_token %}
+        {{form.portfolio}}
+        {{form.category.label}}
+        {{form.category}}
+
+        {{form.asset.label}}
+        {{form.asset}}
+        {{form.price.label}}
+        {{form.price}}
+
+        {{form.amount.label}}
+        {{form.amount}}
+
+      
+        <button type="submit">Ekle</button>
+    </form>
+</div>
+
+
+
+<script>
+  const goldData = {{ golds|safe }};
+  const cryptoData = {{ crypto|safe }};
+  const exchangeRates = {{ exchange|safe }};
+
+  const categorySelect = document.getElementById("category");
+  const assetSelect = document.getElementById("asset");
+  const priceInput = document.getElementById("price");
+
+  categorySelect.addEventListener("change", function () {
+    const selected = this.value;
+    assetSelect.innerHTML = "<option value=''>Seçiniz</option>";
+    priceInput.value = "";
+
+    let list = [];
+
+    if (selected === "gold") {
+      list = goldData;
+    } else if (selected === "crypto") {
+      list = cryptoData;
+    } else if (selected === "currency") {
+      list = Object.keys(exchangeRates); 
+    }
+
+    list.forEach((item) => {
+      const option = document.createElement("option");
+
+      if (selected === "gold") {
+        option.value = item.title; 
+        option.textContent = item.title;
+      } else if (selected === "crypto") {
+        option.value = item.symbol;
+        option.textContent = item.symbol;
+      } else if (selected === "currency") {
+        option.value = item; 
+        option.textContent = `${exchangeRates[item].name} (${item})`;
+      }
+
+      assetSelect.appendChild(option);
+    });
+  });
+
+  assetSelect.addEventListener("change", function () {
+    const selectedCategory = categorySelect.value;
+    const selectedValue = this.value;
+
+    if (selectedValue === "") {
+      priceInput.value = "";
+      return;
+    }
+
+    let selectedItem;
+
+    if (selectedCategory === "gold") {
+      selectedItem = goldData.find(item => item.title === selectedValue);
+      priceInput.value = selectedItem?.values[0] || "";
+    } else if (selectedCategory === "crypto") {
+      selectedItem = cryptoData.find(item => item.symbol === selectedValue);
+      priceInput.value = selectedItem?.askPrice || "";
+    } else if (selectedCategory === "currency") {
+      selectedItem = exchangeRates[selectedValue];
+      priceInput.value = selectedItem?.rate || "";
+    }
+  });
+</script>
+
+  
+{% endblock content %}

@@ -1,0 +1,1139 @@
+@import "partials/imports";
+body {
+  font-family: "Inter", sans-serif;
+  background-color: $bg;
+  color: $text;
+  line-height: 1.6;
+}
+
+a {
+  color: $accent;
+}
+
+header {
+  background: linear-gradient(180deg, #0f172a 0%, #0e1117 100%);
+  padding: 80px 20px 60px;
+  text-align: center;
+  width: 100%;
+  h1 {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    background: linear-gradient(to right, #3b82f6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    font-size: 18px;
+    color: $subtext;
+    margin-bottom: 30px;
+  }
+
+  .btn {
+    display: inline-block;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s;
+    margin: 0 8px;
+    background: #10151c;
+    background: linear-gradient(to bottom left, #16263c 100%, #030e27 32%);
+
+    &:hover {
+      background: $accent-hover;
+      transform: scale(1.05);
+    }
+  }
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% / 1.3);
+  margin: auto;
+  img {
+    width: 100%;
+
+    object-fit: cover;
+    object-position: center;
+    @include breakpoint(lg) {
+      width: auto;
+      height: auto;
+    }
+  }
+}
+
+.container {
+  margin: auto;
+  padding: 40px 20px;
+
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    border-left: 4px solid $accent;
+    padding-left: 12px;
+    background: #0f172a;
+    background: linear-gradient(to left, #7892ce 23%, #5f80c4e0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  .grid {
+    display: grid;
+    gap: 20px;
+  }
+  .grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .card {
+    background: $card;
+    border: 1px solid $border;
+    padding: 24px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+    cursor: pointer;
+    &:hover {
+      transform: translateY(-4px);
+    }
+
+    .detail {
+     display: flex;
+     align-items: center;
+      
+
+      img {
+        width: 30px;
+      }
+      h3 {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        margin-left: 1rem;
+        margin-top: 10px;
+        
+        @include breakpoint(lg) {
+          font-size: 1rem;
+        }
+      }
+    }
+    
+  }
+
+  .card span.price {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: $green;
+    line-height: 1.5;
+    @include breakpoint(lg) {
+      font-size: 1rem;
+    }
+  }
+
+  .stats {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .stat {
+    flex: 1;
+    background: var(--card);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+
+  .stat h4 {
+    font-size: 16px;
+    color: var(--subtext);
+  }
+
+  .stat p {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 8px;
+  }
+}
+
+.news-title {
+  @extend .section-title;
+  margin-top: 2rem;
+}
+
+.news {
+  margin-top: 1rem;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+
+    li {
+      margin-top: 1rem;
+      @include breakpoint(lg) {
+        display: flex;
+        flex-direction: row;
+      }
+      display: flex;
+      flex-direction: column;
+      background: #354152;
+      background: linear-gradient(to bottom right, #161b22 100%, #0e1117 32%);
+      padding: 0.6rem;
+      border-radius: 10px;
+      img {
+        @include breakpoint(lg) {
+          display: block;
+        }
+        display: none;
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 16px;
+      }
+
+      .news-container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 1rem;
+
+        .head {
+          display: flex;
+          flex-direction: column;
+
+          #news-title {
+            color: $text;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            @include breakpoint(lg) {
+              font-size: 1.3rem;
+            }
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
+          #news-description {
+            color: text;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-top: 0.6rem;
+            letter-spacing: 0.2px;
+            color: #c7cacc;
+
+            @include breakpoint(lg) {
+              font-size: 1rem;
+            }
+          }
+        }
+        .news-footer {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 0.5rem;
+          @include breakpoint(lg) {
+            margin-top: 1rem;
+          }
+          div {
+            margin-top: 1rem;
+            margin-left: 1rem;
+            @include breakpoint(lg) {
+              margin-left: 2rem;
+            }
+            i,
+            span {
+              font-size: 0.7rem;
+              color: $subtext;
+              @include breakpoint(lg) {
+                font-size: 1rem;
+              }
+            }
+          }
+
+          div:nth-child(1) {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+  gap: 8px;
+
+  .page-link {
+    background: transparent;
+    border: 1px solid $border;
+    color: $text;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $accent;
+      color: white;
+      border-color: $accent;
+    }
+
+    &.active {
+      background: $accent;
+      color: white;
+      font-weight: bold;
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  font-size: 14px;
+  color: $subtext;
+  padding: 40px 20px;
+  margin-top: 60px;
+  border-top: 1px solid $border;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.login {
+  width: 100%;
+  background-color: #030e27;
+  background: linear-gradient(180deg, #0f172a 0%, #0e1117 100%);
+  height: 100vh;
+}
+
+.register-form {
+  @extend .login-form;
+}
+.login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  flex-direction: column;
+  width: calc(100% / 1.2);
+  margin: auto;
+  @include breakpoint(md) {
+    width: calc(100% / 2);
+  }
+  @include breakpoint(lg) {
+    width: calc(100% / 3);
+  }
+  .container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background: rgba(15, 19, 29, 0.59);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.443);
+    backdrop-filter: blur(8.2px);
+    -webkit-backdrop-filter: blur(8.2px);
+    border: 1px solid #526fb74d;
+
+    h1 {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 1.9rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+
+      input {
+        margin-bottom: 1rem;
+        padding: 0.8rem;
+        background-color: transparent;
+        border: 1px solid #526fb74d;
+        outline: none;
+        color: $text;
+        border-radius: 10px;
+      }
+      button {
+        padding: 0.8rem 0.2rem;
+        background-color: #354d87;
+        border: none;
+        color: $text;
+        border-radius: 10px;
+        font-weight: 500;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: rgba(10, 10, 137, 0.2) 0px 7px 9px 0px;
+      }
+    }
+
+    .login-footer {
+      color: $text;
+      text-align: center;
+      margin-top: 2rem;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+      a {
+        color: $accent;
+        text-decoration: underline;
+        transition: text-decoration 1s linear;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.back-to-home {
+  position: fixed;
+  top: 60px;
+  left: 40px;
+  background-color: #182435;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: #13131e33 0px 7px 29px 0px;
+
+  a {
+    color: white;
+    font-size: 1rem;
+  }
+
+  &:hover {
+    background-color: transparent;
+    border: 2px solid $green;
+  }
+}
+
+/*Dashboard sayfası*/
+
+.dashboard {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+.sidebar {
+  box-shadow: rgba(19, 4, 50, 0.402) 0px 3px 8px;
+  width: calc(100% / 5);
+  min-width: calc(100% / 5);
+  background-color: $card;
+  padding: 20px;
+  border-right: 1px solid $border;
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100vh;
+  z-index: 10;
+  @include breakpoint(lg) {
+    display: flex;
+  }
+
+  #close_sidebar {
+    position: fixed;
+    top: 30px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    padding: 1rem;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-color: $bg;
+    border: 1px solid #10b9815b;
+    margin: 0;
+    border-radius: 100px;
+
+    @include breakpoint(lg) {
+      display: none;
+    }
+  }
+  h2 {
+    font-size: 1.7rem;
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 1rem;
+    background: #10b981;
+    background: linear-gradient(
+      90deg,
+      rgba(16, 185, 129, 1) 0%,
+      rgba(37, 99, 235, 1) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  a {
+    color: $text;
+    font-weight: 500;
+    padding: 10px 16px;
+    border-radius: 8px;
+    transition: background-color 0.5s;
+
+    &:hover {
+      background-color: $accent-hover;
+    }
+  }
+}
+
+.main {
+  flex-grow: 1;
+  padding: 20px 20px;
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: $card;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+
+    h1 {
+      font-size: 1rem;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: $subtext;
+      display: none;
+      @include breakpoint(lg) {
+        display: block;
+      }
+    }
+
+    .mobile_menu {
+      @include breakpoint(lg) {
+        display: none;
+      }
+      i {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  .stats_dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+
+    .stat_dashboard {
+      background: $card;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid $border;
+
+      h3 {
+        font-size: 16px;
+        color: $subtext;
+      }
+
+      p {
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .investment {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+
+    h1 {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 2rem;
+      border-left: 2px solid $accent;
+      padding-left: 1rem;
+      color: $accent;
+    }
+
+    .table-container {
+      overflow: scroll;
+      background: $card;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      margin-top: 2rem;
+      max-width: calc(100% / 2);
+
+      table,
+      head,
+      tbody,
+      th,
+      td,
+      tr {
+        display: block;
+      }
+      th {
+        display: none;
+      }
+      td {
+        border: none;
+        padding: 10px;
+        position: relative;
+
+        &::before {
+          content: attr(data-label);
+          color: $subtext;
+          font-weight: bold;
+          display: block;
+          margin-bottom: 6px;
+        }
+        .delete {
+          font-weight: bold;
+          color: $loss !important;
+        }
+        .update {
+          font-weight: bold;
+          color: $green;
+        }
+      }
+
+      tbody tr {
+        &:not(:first-child) {
+          border-top: 2px solid $border;
+        }
+      }
+
+      @include breakpoint(md) {
+        table {
+          display: table;
+          width: 100%;
+          border-collapse: collapse;
+        }
+        thead {
+          display: table-header-group;
+        }
+        tbody {
+          display: table-row-group;
+        }
+
+        tr {
+          display: table-row;
+        }
+
+        th,
+        td {
+          display: table-cell;
+          padding: 14px 20px;
+          text-align: center;
+        }
+        th {
+          background-color: $border;
+          color: $subtext;
+          font-weight: 500;
+        }
+        td {
+          &::before {
+            display: none;
+          }
+          border-top: 1px solid $border;
+
+          .delete {
+            font-weight: bold;
+            color: $loss !important;
+          }
+          .update {
+            font-weight: bold;
+            color: $green;
+          }
+        }
+      }
+    }
+  }
+}
+
+.news {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+
+  h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: $text;
+    font-size: 1.7rem;
+    border-left: 1px solid $accent-hover;
+    padding-left: 1rem;
+  }
+
+  .news-item {
+    ul {
+      display: flex;
+      flex-direction: column;
+
+      li {
+        display: flex;
+        margin-bottom: 0.3rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        img {
+          width: 200px;
+          height: 200px;
+          object-fit: cover;
+          object-position: center;
+        }
+        .news_container {
+          display: flex;
+          flex-direction: column;
+          margin-left: 1rem;
+
+          #news_title {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 1.2rem;
+            color: $text;
+            font-weight: 600;
+            margin-top: 0.7rem;
+
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+
+          #news_description {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 1rem;
+            color: $subtext;
+            font-weight: 300;
+            margin-top: 0.2rem;
+            line-height: 1.6;
+            letter-spacing: 0.6px;
+          }
+
+          .news-footer {
+            display: flex;
+            margin-top: 0.8rem;
+            justify-content: space-around;
+
+            i,
+            span {
+              font-size: 0.9rem;
+              color: $subtext;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+.exchange_rates {
+  margin-top: 2rem;
+  
+  h1 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2rem;
+    font-weight: bold;
+    color: $accent;
+    border-left: 2px solid $accent;
+    padding-left: 1rem;
+
+  }
+
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 2rem;
+    justify-content: center;
+    .item {
+      min-width: calc(100% / 4);
+      background-color: $card;
+      padding: 20px 30px;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      border-radius: 10px;
+      border-bottom: 1px solid #10b9813c;
+      border-left: 1px solid #1059b96f;
+      border-right: 1px solid #7510b956;
+      border-top: 1px solid #1072b98e;
+
+
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+
+      span:nth-child(1) {
+        font-size: 1rem;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: $text;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      span:last-child {
+        font-size: 0.9rem;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: $subtext;
+      }
+    }
+
+  }
+}
+
+.exchangeRatesDiv {
+  @extend .markets;
+  .table-container {
+    width: 100%;
+    max-width: 100% !important;
+    overflow-x: hidden !important; 
+  }
+}
+.golds {
+  @extend .markets;
+  width: 100% !important;
+
+  .table-container {
+    width: 100%;
+    max-width: 100% !important;
+    overflow-x: hidden !important; 
+  }
+}
+.markets {
+
+  @extend .investment;
+  margin-top: 2rem ;
+  .table-container {
+    width: 100%;
+    max-width: 100% !important;
+    overflow-x: hidden !important; 
+  }
+
+  .containermarkets {
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    width: 100%;
+    flex-direction: column;
+    
+    @include breakpoint(lg){
+      align-items: center;
+      justify-content: space-between;
+      display: flex;
+      flex-direction: row;
+    }
+    form {
+      display: flex;
+      
+      flex-direction: column;
+      width: 100%;
+      margin-top: 2rem;
+
+      @include breakpoint(lg){
+        display: flex;
+        flex-direction: row;
+        margin-top: 0;
+        width: calc(100% / 2);
+
+      }
+      input {
+        border: 1px solid #f4f9ff21;
+        width: 100%;
+        padding: 10px 16px;
+        border-radius: 10px;
+        
+        outline: none;
+        background-color: $card;
+        color:$text
+      }
+      button {
+        padding: 9px 30px;
+        border-radius: 10px;
+        background-color: #0d9366;
+        border: 2px solid #0d9366;
+        color: $text;
+        font-family: 1rem;
+        font-weight: bolder;
+        cursor: pointer;
+        margin-top: 2rem;
+        @include breakpoint(lg){
+          margin-left: 9px;
+          margin-top: 0;
+        }
+
+      }
+    }
+  }
+}
+
+
+
+.portfolio-class {
+  margin-top: 3rem;
+  form {
+    display: flex;
+    
+    justify-content: center;
+    flex-direction: column;
+    background-color: $card;
+    padding: 1rem;
+    width: calc(100% / 1.5);
+    border-radius: 10px;
+    box-shadow: rgba(54, 54, 187, 0.091) 0px 7px 9px 0px;
+    margin: auto;
+    label {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 1rem;
+      font-weight: bold;
+      letter-spacing: 0.4px;
+      color: $text;
+    }
+
+    select,
+    input {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      padding: 0.6rem;
+      background-color: $bg;
+      border: none;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-size: 1rem;
+      color: $text;
+      outline: none;
+    }
+    button {
+      padding: 10px 16px;
+      border-radius: 12px;
+      background-color: #0d9366;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+}
+
+
+.add_portfolio {
+  margin-top: 4rem !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: $card;
+  width: calc(100% / 2);
+  margin: auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: rgba(177, 170, 170, 0.1) 0px 4px 1px;
+  h1 {
+    color: $text;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 2rem;
+    padding-left: 1rem;
+    color: $subtext;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    width: 100%;
+    input {
+      background-color: transparent;
+      border: 1px solid #c7cacc55;
+      padding: 0.8rem;
+      width: 100%;
+      border-radius: 10px;
+      outline: none;
+      color: white;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #0d9366;
+      border: none;
+    }
+  }
+
+  
+
+}
+
+
+
+.dashboard-header {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background-color: $card;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #c7cacc3a;
+  h1 {
+    font-size: 1.5rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 800;
+    color: $subtext;
+  }
+
+  .portfolio-select {
+    display: flex;
+    align-items: center;
+    
+    span {
+      font-size: 1rem;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      color: $subtext;
+    }
+    select {
+      margin-left: 1rem;
+      background-color: transparent;
+      color: white;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 1px solid #c7cacc4e;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+  }
+}
+
+.card-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+
+  .card {
+    background-color: $card;
+    border: 1px solid $border;
+    border-radius: 16px;
+    padding: 20px;
+    transition: 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: calc(100% / 2.2);
+    width: calc(100% / 2.2);
+
+    &:hover {
+      border-color: $accent;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .header {
+      margin-top: 1.7rem;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+      
+
+      .name {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $text;
+      }
+      .type {
+        font-size: 0.85rem;
+        color: $subtext;
+ 
+      }
+    }
+    
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      font-size: 0.95rem;
+
+      .info-label {
+        color: $subtext;
+      }
+    }
+
+    .price-box {
+      background-color: rgba(250, 204, 21, 0.08);
+      padding: 12px;
+      text-align: center;
+      border-radius: 10px;
+      color: $accent;
+      font-weight: 600;
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #FACC15;
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: $green;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+
+
+      button {
+        padding: 10px 18px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: background 0.3s, transform 0.2s;
+      }
+      .btn-edit {
+        background-color: #238636;
+        color: white;
+      }
+    
+      .btn-edit:hover {
+        background-color: #2ea043;
+        transform: translateY(-1px);
+      }
+    
+      .btn-delete {
+        background-color: #da3633;
+        color: white;
+      }
+    
+      .btn-delete:hover {
+        background-color: #f85149;
+        transform: translateY(-1px);
+      }
+    }
+  }
+}

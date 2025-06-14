@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Blockfolio{% endblock %}</title>
+    
+    <link rel="stylesheet" href="{% static "css/style.css" %}?{% now 'U' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+  <body>
+    {% block index %}{% endblock index %}
+    
+    
+    <div class="" style="display:flex; width: 100%;">
+        {% block sidebar %}
+        
+            
+        {% endblock sidebar %}
+
+        <main class="main">
+            {% block navbar %}{% endblock navbar %}
+
+            {% block stats %}{% endblock stats %}
+
+            {% block content %}
+            {% endblock content %}
+        </main>
+    </div>
+    
+
+
+
+    {% include "partials/_footer.html" %}
+
+    <script src="{% static "javascript/script.js" %}"></script>
+  </body>
+</html>

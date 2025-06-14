@@ -1,0 +1,100 @@
+
+{% extends "base.html" %}
+{% load humanize %}
+{% load custom_tags %}
+
+{% block sidebar %}
+
+{% include "partials/_sidebar.html" %}
+
+{% endblock sidebar %}
+{% block navbar %}
+ {% include "partials/_navbar.html" %} 
+ 
+{% endblock navbar %}
+
+
+
+{% block stats %}
+
+{% include "partials/_stats.html" %}
+
+{% endblock stats %} 
+
+
+{% block content %}
+
+<div class="markets">
+  <div class="containermarkets">
+    <h1>Kripto Paralar</h1>
+    <form method="GET">
+      <input type="text" name="search" id="" placeholder="Kripto para ara" />
+      <button type="submit">Ara</button>
+    </form>
+  </div>
+
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>Varlık Adı</th>
+        <th>Alış Fiyatı</th>
+        <th>Değişim</th>
+        <th>Değişim (%)</th>
+        <th>En Yüksek</th>
+        <th>En Düşük</th>
+        <th>Coin Hacmi</th>
+    </tr>
+      <tbody id="crypto-table-body">
+        {% if coin %}
+          <tr>
+                <td>{{ coin.symbol }}</td>
+                <td>{{ coin.price }}</td>
+ 
+          </tr>
+        {% endif %}
+        {% for coin in coins %}
+            <tr>
+                <td>{{ coin.symbol }}</td>
+                <td>
+                  {% with coin.bidPrice|floatformat:2 as formatted %}
+                    {{ formatted|intcomma }} $
+                  {% endwith %}
+                </td>
+                <td class="{% if coin.priceChange|to_float > 0 %}gain{% elif coin.priceChange|to_float < 0 %}loss{% else %}neutral{% endif %}">
+                  {% with coin.priceChange|floatformat:2 as formatted %}
+                    {{ formatted|intcomma }}  $
+                  {% endwith %}
+                </td>
+                <td class="{% if coin.priceChangePercent|to_float > 0 %}gain{% elif coin.priceChangePercent|to_float < 0 %}loss{% else %}neutral{% endif %}">
+                  {% with coin.priceChangePercent|floatformat:2 as formatted %}
+                    {{ formatted|intcomma }}%
+                  {% endwith %}
+                </td>
+              
+                <td>
+                  {% with coin.highPrice|floatformat:2 as formatted %}
+                      {{ formatted|intcomma }} 
+                  {% endwith %}
+                </td>
+                <td>
+                  {% with coin.lowPrice|floatformat:2 as formatted %}
+                      {{ formatted|intcomma }} 
+                  {% endwith %}
+                </td>
+              
+                
+                <td>
+                  {% with coin.volume|floatformat:2 as formatted %}
+                      {{ formatted|intcomma }} 
+                  {% endwith %}
+              </td>
+              
+              
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}

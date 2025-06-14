@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load custom_tags %}
+
+{% block sidebar %}
+
+{% include "partials/_sidebar.html" %}
+{% endblock sidebar %}
+{% block navbar %}
+{% include "partials/_navbar.html" %} 
+{% endblock navbar %} 
+{% block stats %} 
+{% include "partials/_stats.html" %}
+{% endblock stats %} 
+
+{% block content %}
+
+<div class="dashboard-header">
+  <h1>Yatırımlarım</h1>
+  
+  <div class="portfolio-select">
+    <span>Portfolyo seç</span>
+    <form method="get" id="portfolio-form">
+
+    <select name="portfolio_id" id="portfolio" onchange="this.form.submit()">
+      <option value="">Tüm Portföyler</option>
+        {% for p in  select_portfolio %}
+          <option value="{{ p.id }}" {% if p.id|stringformat:"s" == request.GET.portfolio_id %}selected{% endif %}>
+          {{ p.portfolio_name }}
+      </option>
+      {% endfor %}
+      </select>
+    </form>
+  </div>
+</div>
+<div class="card-container">
+  {% for item in portfolio  %}
+  <div class="card">
+    <div class="header">
+      <div class="name">{{item.asset_name}}</div>
+      <div class="type">{{item.asset_type}}</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Tarih :</div>
+      <div>{{item.date|date:"Y-m-d H:i"}}</div>
+    </div>
+     <div class="info-row">
+      <div class="info-label">Adet:</div>
+      <div>{{item.amount}}</div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Mevcut Fiyat :</div>
+      {% if item.current_price.items %}
+        <div>{{item.current_price.price}}</div>
+      {% else %}
+        <div>{{item.current_price}}</div>
+      {% endif %}
+    </div>
+    <div class="info-row">
+      <div class="info-label">Alış Fiyat :</div>
+        <div>{{item.buy_price}}</div>
+    </div>
+   
+    <div class="info-row">
+      <div class="info-label">Kâr / Zarar :</div>
+      <div>
+        {% if item.profit_or_loss.amount >= 0 %}
+            <span style="color: green;">+{{ item.profit_or_loss.amount }}</span>
+        {% else %}
+          <span style="color: red;">{{ item.profit_or_loss.amount }}</span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-label">Kar Oranı ( % ):</div>
+      <div>
+         {% if item.profit_or_loss.percentage >= 0 %}
+            <span style="color: green;">+{{ item.profit_or_loss.percentage }}%</span>
+          {% else %}
+            <span style="color: red;">{{ item.profit_or_loss.percentage }}%</span>
+          {% endif %}
+      </div>
+    </div>
+  
+    <div class="price-box">
+      portfolio : {{item.portfolio_name}}
+    </div>
+    <div class="buttons">
+      <form action="{% url 'portfolio-delete' item.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn-delete" onclick="return confirm('Silmek istediğine emin misin?')">
+            Sil
+        </button>
+      </form>
+      
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+
+{% endblock content %}

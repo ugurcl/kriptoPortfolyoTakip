@@ -1,0 +1,12 @@
+<aside class="sidebar">
+    <h2>Portfolyo Takip Sistemi</h2>
+    <i class="bi bi-x-lg" id="close_sidebar"></i>
+    <a href="{% url "dashboard" %}" class="{% if request.path == '/anasayfa/' %}active{% endif %}">🏠 Ana Sayfa</a>
+    
+    <a href="{% url "add_portfolio" %}" class="">➕ Yeni Portföy</a>
+    <a href="{% url "portfolio" %}">➕ Varlık Ekle</a>
+    <a href="{% url "cryptomarkets" %}"  class="{% if request.path == '/kripto-paralar/' %}active{% endif %}">💹 Kripto Paralar</a>
+    <a href="{% url "golds" %}" class="{% if request.path == '/altin/' %}active{% endif %}">🥇 Altınlar</a>
+    <a href="{% url "exchangeRates" %}" class="{% if request.path == '/dovizler/' %}active{% endif %}">💰 Dövizler</a>
+    <a href="{% url "logout" %}">🚪 Çıkış Yap</a>
+</aside>

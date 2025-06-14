@@ -1,0 +1,50 @@
+
+{% extends "base.html" %}
+{% load humanize %}
+{% load custom_tags %}
+
+{% block sidebar %}
+
+{% include "partials/_sidebar.html" %}
+
+{% endblock sidebar %}
+{% block navbar %}
+ {% include "partials/_navbar.html" %} 
+ 
+{% endblock navbar %}
+
+
+
+{% block stats %}
+
+{% include "partials/_stats.html" %}
+
+{% endblock stats %} 
+
+
+{% block content %}
+
+<div class="exchangeRatesDiv">
+
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>Kod</th>
+        <th>İsim</th>
+        <th>Kur (₺)</th>
+        
+    </tr>
+      <tbody>
+        {% for code, info in exchange.items %}
+        <tr>
+          <td>{{ code }}</td>
+          <td>{{ info.name }}</td>
+          <td>{{ info.rate }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}

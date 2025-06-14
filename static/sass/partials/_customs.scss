@@ -1,0 +1,38 @@
+@import 'variables';
+
+.open_sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100% ) !important;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex !important;
+}
+
+.gain {
+    color: $green   ;
+    font-weight: 600;
+  }
+
+.loss {
+    color: $loss;
+    font-weight: 600;
+  }
+
+.neutral {
+  color:  $text;
+  font-weight: 600;
+}
+#errors {
+  color: $loss;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin-bottom: 1rem;
+  font-weight: 200;
+  text-align: center;
+}
+
+
+.active {
+  background-color: #10b981;
+}

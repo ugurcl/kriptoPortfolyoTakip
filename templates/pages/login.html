@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giriş Yap</title>
+    <link rel="shortcut icon" href="../static/images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+  />
+</head>
+<body class="login">
+    
+    <div class="login-form">
+        <div class="container">
+
+            <h1>Giriş Yap</h1>
+
+            <form action="" method="POST">
+                {% csrf_token %}
+                
+                {% if form.non_field_errors %}
+                    <div id="errors">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {{form.username}}
+                {{form.password}}
+                <button>Giriş Yap</button>
+            </form>
+            <span class="login-footer">Hesabınız Yok mu ? <a href="{% url "signup" %}">Kayıt Ol</a></span>
+        </div>
+    </div>
+
+
+    <span class="back-to-home">
+        <a href="index.html"><i class="bi bi-arrow-left"></i></a>
+    </span>
+</body>
+</html>

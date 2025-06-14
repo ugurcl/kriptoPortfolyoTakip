@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block sidebar %}
+    {% include "partials/_sidebar.html" %}
+{% endblock sidebar %}
+
+{% block navbar %}
+    {% include "partials/_navbar.html" %}
+{% endblock navbar %}
+
+{% block stats %}
+    {% include "partials/_stats.html" %}
+{% endblock stats  %}
+
+
+
+
+{% block content %}
+
+
+<div class="add_portfolio" >
+  <h1>Yeni Portfolyo Ekle</h1>
+  <form method="POST">
+    {% csrf_token %}
+  
+    {{form.name}}
+
+    <button type="submit">Ekle</button>
+
+  </form>
+
+
+
+</div>
+{% endblock content %}

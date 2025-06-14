@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+{% load humanize %}
+{% load custom_tags %}
+
+{% block sidebar %}
+
+{% include "partials/_sidebar.html" %}
+
+{% endblock sidebar %}
+{% block navbar %}
+ {% include "partials/_navbar.html" %} 
+ 
+{% endblock navbar %}
+
+
+
+{% block stats %}
+
+{% include "partials/_stats.html" %}
+
+{% endblock stats %} 
+
+
+{% block content %}
+
+<div class="golds">
+
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>İsim</th>
+        <th>Alış</th>
+        <th>Satış</th>
+        <th>%</th>
+        <th>Saat</th>
+        
+    </tr>
+      <tbody>
+        {% for item in gold %}
+        <tr>
+
+            <td>{{item.title}}</td>
+            <td>{{item.values.0}} ₺</td>
+            <td>{{item.values.1}} ₺</td>
+            <td>{{item.values.2}}</td>
+            <td>{{item.values.3}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock content %}
