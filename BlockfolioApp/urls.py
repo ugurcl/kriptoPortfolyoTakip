@@ -25,5 +25,5 @@ urlpatterns = [
         '',
         include('Core.urls')
     ),
-    path('api/', include('Api.urls'))
+    
 ]
